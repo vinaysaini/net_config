@@ -624,16 +624,16 @@
 						</td>
                                              </tr>
                                              <tr id="ipa01">
-                                                <td class="vncell" align="left">IP Address</td>
-                                                <td class="vtable" align="left"><input type="text" name="ip01" id="form_netmask" value="<?php echo $IPconfig0[1]; ?>" size="20"></td>
+                                                <td class="vncell" align="left">IP Address *</td>
+                                                <td class="vtable" align="left"><input type="text" name="ip01" id="form_netmask" value="<?php echo $IPconfig0[1]; ?>" size="20" required="true" pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"></td>
                                              </tr>
 					     <tr id="ipa02">
-                                                <td class="vncell" align="left">Netmask</td>
-                                                <td class="vtable" align="left"><input type="text" name="ip02" id="form_netmask" value="<?php echo $IPconfig0[3]; ?>" size="20"></td>
+                                                <td class="vncell" align="left">Netmask *</td>
+                                                <td class="vtable" align="left"><input type="text" name="ip02" id="form_netmask" value="<?php echo $IPconfig0[3]; ?>" size="20" required="true" pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"></td>
                                              </tr>
 					     <tr id="ipa03">
-                                                <td class="vncell" align="left">Gateway</td>
-                                                <td class="vtable" align="left"><input type="text" name="ip03" id="form_netmask" value="<?php echo $gateway; ?>" size="20"></td>
+                                                <td class="vncell" align="left">Gateway *</td>
+                                                <td class="vtable" align="left"><input type="text" name="ip03" id="form_netmask" value="<?php echo $gateway; ?>" size="20" required="true" pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"></td>
                                              </tr>
                                           </tbody>
                                        </table>
