@@ -1,570 +1,682 @@
-<style>
-
-html {
-     overflow: auto;
-}
-
-html, body {
-  height: 95%;
-}
-
-body {
-	background: #585858;
-	color: #000000;
-	font-family: Arial, Helvetica, "Sans Serif";
-	margin: 12px 0px;
-  	padding: 0;
-}
-
-/** Use IE6 specific syntax to set 'div.page' height, since min-height is not recognized by IE6. */
-* html div.page {
-  height: 100%;
-}
-
-div.page {
-  border: 1px solid #202020;
-  margin: 0 auto; /* Center align for other browsers,  */
-  text-align: left;
-	background: #ffffff;
-	width: 1010px;
-  min-height: 100%; /* IE6 doesn't recognize min-height. */
-}
-
-div.header {
-  position: relative;
-  height: 95px;
-}
-
-div.title-icon {
-  position:absolute;
-  top: 12px;
-  left: 15px;
-}
-
-div.title-left {
-  position: absolute;
-  top: 6px;
-  left: 56px;
-	color: navy;
-	font-size: 24pt;
-	font-weight: bolder;
-	vertical-align: middle;
-	white-space: nowrap;
-}
-
-div.title-hosted {
-  position: absolute;
-  right: 0px;
-}
-
-div.title-hosted p, div.title-hosted a {
-	color: navy;
-	font-size: 8pt;
-	margin: 0.8em;
-	text-align:right;
-	text-decoration: none;
-	vertical-align: middle;
-	white-space: nowrap;
-}
-
-div.header-color {
-  position: absolute;
-  top: 50px;
-	background-color: #334ECF;
-	font-size: 9pt;
-  height: 15px;
-  width: 100%;
-}
-
-.menustyle {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-}
-
-div.content {
-	font-size: 10pt;
-	padding: 15px;
-	border-collapse: separate;
-}
-
-div.content h2 {
-  margin: 0;
-}
-
-#msgDiv {
-	background-color: #f0f0f0;
-	border: thin solid navy;
-	margin: 1em;
-	margin-left: 0em;
-	margin-right: 2em;
-	padding: 1em;
-}
-
-.infoMsg {
-	border: 1px solid #a7bcd6;
-	background-color: #ffffc0;
-	margin: 0.5em;
-	padding: 0.5em;
-}
-
-td, th {
-	font-size: 9pt;
-}
-
-a:visited {
-	color: blue;
-}
-
-a.external {
-  background: url(/click-examples/assets/images/external.png) center right no-repeat;
-  padding-right: 14px;
-}
-
-/*
- * Table styles
- */
-table.complex td, table.complex th, table.isi td, table.isi th, table.its td, table.its th, table.mars td, table.mars th, table.nocol td, table.nocol th, table.simple td, table.simple th, table.simple input, table.simple select, table.report td, table.report th {
-	font-size: 9pt;
-}
-
-span.pagebanner, span.pagelinks {
-	font-size: 9pt;
-}
-
-table input {
-	font-size: 9pt;
-}
-
-/*
- * Form styles
- */
-table.errors td, table.fields td, table.fields label, table.fields input, table.fields select, table.fields textarea, table.buttons input {
-	font-size: 9pt;
-}
-
-/*
- * Tabbed Panel styles
- */
-a.tb_label {
-	font-size: 9pt;
-}
-
-/*
- * Example Styles
- */
-.code, .codeConfig, .codeDtd, .codeJava, .codeHtml {
-	font-family: Courier New, courier;
-	font-size: 9pt;
-	border: 1px solid #AAAAAA;
-	background-color: #FAFAFA;
-	padding: 1em;
-	margin-top: 1em;
-	margin-bottom: 1.5em;
-	margin-left: 0em;
-	margin-right: 1.5em;
-	white-space: pre;
-}
-
-.codeJava {
-	font-family: Courier New, courier;
-	border: 1px solid #AAAAAA;
-	background-color: white;
-	padding: 1em;
-	margin-top: 1em;
-	margin-bottom: 1.5em;
-	margin-right: 1.5em;
-	white-space: pre;
-}
-
-.codeHtml
-{
-	border: 1px solid #97A9FF;
-	background-color: white;
-}
-
-/* Java keyword. */
-.kw {
-    color: #7f0055;
-    font-weight: bold;
-}
-
-/* Javadoc */
-.jd {
-    color: #3f5fbf;
-}
-
-/* Java comment */
-.cm {
-    color: #3f7f5f;
-}
-
-/* Java String literal */
-.st {
-    color: #2a00ff;
-}
-.red { color: red; }
-
-.green { color: green; }
-
-.blue { color: blue; }
-
-.maroon { color: maroon; }
-
-.navy { color: navy; }
-
-/*
- * Add a 2px space between the Menu icon and Menu text.
- */
-.menustyle img.link {
-    margin-right: 2px;
-}
-
-.image-link, .image-link.disabled {
-    text-decoration: none;
-}
-
-.image-link span {
-    text-decoration: underline;
-}
-
-.image-link img.link {
-    vertical-align: top;
-    padding-right: 2px;
-}
-
-span.disabled img {
-    filter: alpha( opacity = 50 );
-    -moz-opacity: 0.5;
-    -khtml-opacity: 0.5;
-    opacity: 0.5;
-}
-
-span.disabled {
-   cursor: pointer;
-   color: #6D6D6D;
-   text-decoration: underline;
-}
-
-/* Exporter */
-
-.export-attached, .export-detached {
-    border: 1px dotted #999999;
-    padding: 2px 4px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    display: block;
-    width: 390px;
-    background-color: #EEEEEE;
-}
-
-.export-attached a, .export-detached a, .export-inline a {
-    text-decoration: none;
-}
-
-.export-attached a span, .export-detached a span, .export-inline a span {
-    text-decoration: underline;
-}
-
-.export-attached img.link, .export-detached img.link, .export-inline img.link {
-    vertical-align: top;
-    padding-right: 2px;
-}
-
-/* Inline Exporter */
-
-td.export-inline {
-	background-color: #eee;
-	padding-right: 1em;
-}
-
-table.isi td.export-inline, table.orange1 td.export-inline, table.orange2 td.export-inline {
-	background-color: #fff;
-}
-
-td.export-inline span {
-    width: 100%;
-}
-
-/*
- * Spring Security (Acegi) example style.
- */
-div.dialogForm {
-	background-color: #f0f0f0;
-	width: 305px;
-  margin-right: auto;
-  margin-left: auto;
-	padding: 20px 20px 20px 20px;
-	border-top: 1px solid #e0e0e0;
-	border-left: 1px solid #e0e0e0;
-	border-bottom: 1px solid #c0c0c0;
-	border-right: 1px solid #c0c0c0;
-}
-
-/*
- * Ajax scroller example style.
- */
-.customer {
-    border:1px solid black;
-    background:#eeeeee;
-    padding: 4px;
-    margin-bottom: 20px;
-}
-
-.errorMsg {
-	border: 1px solid #BD0000;
-	background-color: #EE0000;
-	margin: 0.5em;
-	padding: 0.5em;
-  color: #FFF;
-}
-
-div.auto_complete {
-	position: absolute;
-	background-color: white;
-	border: 0px solid #888;
-	margin: 0px;
-	padding: 0px;
-}
-div.auto_complete ul {
-	border: 1px solid #888;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	list-style-type: none;
-}
-div.auto_complete ul li {
-	margin: 0;
-	padding: 3px;
-}
-div.auto_complete ul li.selected {
-	background-color: #ffb;
-}
-
-div.auto_complete ul strong.highlight {
-	color: #800;
-	margin: 0;
-	padding: 0;
-}
-
-/* TabbedForm */
-table.tf_tab {
-	border-collapse: collapse;
-}
-
-td.tf_separator {
-	border-bottom: 1px solid #336699;
-}
-
-td.tf_tab {
-	border-left: 1px solid #336699;
-	border-top: 1px solid #336699;
-	border-right: 1px solid #336699;
-	border-bottom: 1px solid #336699;
-	padding: 5px;
-	white-space: nowrap;
-	text-decoration: none;
-}
-
-td.tf_sheet {
-	border-left: 1px solid #336699;
-	border-right: 1px solid #336699;
-	border-bottom: 1px solid #336699;
-	vertical-align: top;
-	padding: 0.75em;
-}
-
-</style>
-
-<script type="text/javascript">
-function onShowTab(index) {
-    var numberTabs = 2;
-	for (var i = 1; i < (numberTabs + 1); i++) {
-	
-		var tabTitle = document.getElementById('tab-title-' + i);
-		tabTitle.style.backgroundColor = "";
-		tabTitle.style.borderBottom = "";
-		
-		var tabSheet = document.getElementById('tab-sheet-' + i);
-		tabSheet.style.display = "none";
-	}
-	
-	var tabTitle = document.getElementById('tab-title-' + index);
-	tabTitle.style.backgroundColor = "#FFFABF";
-	tabTitle.style.borderBottom = "0px";
-	
-	var tabSheet = document.getElementById('tab-sheet-' + index);
-	tabSheet.style.display = "block";
-
-}
-
-function typeChange1(sel) {
-	 var type = sel.value;
-	 if(type == "DHCP"){
-		var ipa11 = document.getElementById('ipa11');
-		ipa11.style.display = "none";
-		var ipa12 = document.getElementById('ipa12');
-		ipa12.style.display = "none";
-		var ipa13 = document.getElementById('ipa13');
-		ipa13.style.display = "none";			
-	}else{
-		var ipa11 = document.getElementById('ipa11');
-		ipa11.style.display = "table-row";
-		var ipa12 = document.getElementById('ipa12');
-		ipa12.style.display = "table-row";
-		var ipa13 = document.getElementById('ipa13');
-		ipa13.style.display = "table-row";				
-	}  
-}
-	
-function typeChange2(sel) {
-	 var type = sel.value;
-	 if(type == "DHCP"){
-		var ipa21 = document.getElementById('ipa21');
-		ipa21.style.display = "none";
-		var ipa22 = document.getElementById('ipa22');
-		ipa22.style.display = "none";
-		var ipa23 = document.getElementById('ipa23');
-		ipa23.style.display = "none";			
-	}else{
-		var ipa21 = document.getElementById('ipa21');
-		ipa21.style.display = "table-row";
-		var ipa22 = document.getElementById('ipa22');
-		ipa22.style.display = "table-row";
-		var ipa23 = document.getElementById('ipa23');
-		ipa23.style.display = "table-row";
-	}
-}
-
-window.onload = function myOnloadFunc(){
-	var t1 = document.getElementById('type1');
-	var t2 = document.getElementById('type2');
-	typeChange1(t1);
-	typeChange2(t2);
-}
-
-</script>
-
-
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
    <head>
-      <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-      <title>Change Configuration</title>
+      <title>FusionPBX</title>
+      <link rel="icon" href="/themes/default/favicon.ico">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style type="text/css">
+         img {
+         border: none;
+         }
+         A {
+         color: #004083;
+         width: 100%;
+         }
+         body {
+         margin-top: 0px;
+         margin-bottom: 0px;
+         margin-right: 0px;
+         margin-left: 0px;
+         /*background-image: url('/themes/default/images/background.jpg');*/
+         /*background-repeat: repeat-x;*/
+         /*background-attachment: fixed;*/
+         /*background-color: #FFFFFF;*/
+         }
+         th {
+         border-top: 1px solid #444444;
+         border-bottom: 1px solid #444444;
+         text-align: left;
+         color: #FFFFFF;
+         font-size: 12px;
+         font-family: arial;
+         font-weight: bold;
+         /*background-color: #506eab;*/
+         background-image: url('/themes/default/images/background_th.png');
+         padding-top: 4px;
+         padding-bottom: 4px;
+         padding-right: 7px;
+         padding-left: 7px;
+         }
+         th a:link{ color:#FFFFFF; }
+         th a:visited{ color:#FFFFFF; }
+         th a:hover{ color:#FFFFFF; }
+         th a:active{ color:#FFFFFF; }
+         td {
+         color: #5f5f5f;
+         font-size: 12px;
+         font-family: arial;
+         }
+         form {
+         margin: 0px;
+         }
+         td.list_control_icons {
+         /* multiple icons exist (horizontally) */
+         padding: none;
+         padding-left: 3px;
+         width: 50px;
+         text-align: right;
+         vertical-align: top;
+         white-space: nowrap;
+         }
+         td.list_control_icon {
+         /* a single icon exists */
+         padding: none;
+         padding-left: 3px;
+         width: 25px;
+         text-align: right;
+         vertical-align: top;
+         white-space: nowrap;
+         }
+         INPUT.btn {
+         font-family: verdana;
+         font-size: 11px;
+         }
+         INPUT.button {
+         font-family: verdana;
+         font-size: 11px;
+         }
+         SELECT.txt {
+         font-family: arial;
+         font-size: 12px;
+         width: 98.75%;
+         border: solid 1px #CCCCCC;
+         color: #666666;
+         background-color: #EFEFEF;
+         background-repeat:repeat-x;
+         height: 19px;
+         }
+         TEXTAREA.txt {
+         font-family: arial;
+         font-size: 12px;
+         width: 98.75%;
+         border: solid 1px #CCCCCC;
+         color: #666666;
+         background-color: #EFEFEF;
+         background-repeat:repeat-x;
+         overflow: auto;
+         padding: 4px;
+         -moz-border-radius-topleft:5px;
+         -webkit-border-top-left-radius:5px;
+         border-top-left-radius:5px;
+         -moz-border-radius-topright:5px;
+         -webkit-border-top-right-radius:5px;
+         border-top-right-radius:5px;
+         -moz-border-radius-bottomleft:5px;
+         -webkit-border-bottom-left-radius:5px;
+         border-bottom-left-radius:5px;
+         -moz-border-radius-bottomright:5px;
+         -webkit-border-bottom-right-radius:5px;
+         border-bottom-right-radius:5px;
+         }
+         INPUT.txt {
+         font-family: arial;
+         font-size: 12px;
+         width: 98.75%;
+         border: solid 1px #CCCCCC;
+         color: #666666;
+         background-color: #EFEFEF;
+         background-repeat:repeat-x;
+         }
+         .formfld {
+         border: solid 1px #CCCCCC;
+         color: #666666;
+         background-color: #F7F7F7;
+         width: 50%;
+         text-align: left;
+         /*width: 300px;*/
+         padding-left: 4px;
+         -moz-border-radius-topleft:5px;
+         -webkit-border-top-left-radius:5px;
+         border-top-left-radius:5px;
+         -moz-border-radius-topright:5px;
+         -webkit-border-top-right-radius:5px;
+         border-top-right-radius:5px;
+         -moz-border-radius-bottomleft:5px;
+         -webkit-border-bottom-left-radius:5px;
+         border-bottom-left-radius:5px;
+         -moz-border-radius-bottomright:5px;
+         -webkit-border-bottom-right-radius:5px;
+         border-bottom-right-radius:5px;
+         }
+         .vncell {
+         border-bottom: 1px solid #999999;
+         /*background-color: #639BC1;*/
+         background-image: url('/themes/default/images/background_cell.gif');
+         padding-right: 20px;
+         padding-left: 8px;
+         text-align: left;
+         color: #444444;
+         }
+         .vncell a:link{ color:#444444; }
+         .vncell a:visited{ color:#444444; }
+         .vncell style0 a:hover{ color:#444444; }
+         .vncell a:active{ color:#444444; }
+         .vncellreq {
+         background-image: url('/themes/default/images/background_cell.gif');
+         border-bottom: 1px solid #999999;
+         background-color: #639BC1;
+         padding-right: 20px;
+         padding-left: 8px;
+         text-align: left;
+         font-weight: bold;
+         color: #444444;
+         }
+         .vtable {
+         border-bottom: 1px solid #DFDFDF;
+         }
+         .listbg {
+         border-bottom: 1px solid #999999;
+         font-size: 11px;
+         background-color: #990000;
+         color: #444444;
+         padding-right: 16px;
+         padding-left: 6px;
+         padding-top: 4px;
+         padding-bottom: 4px;
+         }
+         .row_style0 {
+         background-image: url('/themes/default/images/background_cell.gif');
+         border-bottom: 1px solid #999999;
+         color: #444444;
+         text-align: left;
+         padding-top: 4px;
+         padding-bottom: 4px;
+         padding-right: 7px;
+         padding-left: 7px;
+         }
+         .row_style0 a:link{ color:#444444; }
+         .row_style0 a:visited{ color:#444444; }
+         .row_style0 a:hover{ color:#444444; }
+         .row_style0 a:active{ color:#444444; }
+         .row_style1 {
+         border-bottom: 1px solid #999999;
+         background-color: #FFFFFF;
+         text-align: left;
+         padding-top: 4px;
+         padding-bottom: 4px;
+         padding-right: 7px;
+         padding-left: 7px;
+         }
+         .row_stylebg {
+         border-bottom: 1px solid #888888;
+         background-color: #5F5F5F;
+         color: #FFFFFF;
+         text-align: left;
+         padding-top: 5px;
+         padding-bottom: 5px;
+         padding-right: 10px;
+         padding-left: 10px;
+         }
+         .border {
+         border: solid 1px #999999;
+         /*background-color: #FFFFFF;*/
+         }
+         .headermain {
+         /*background-color: #7FAEDE;*/
+         }
+         .frm {
+         border: solid 1px #CCCCCC;
+         color: #666666;
+         background-color: #EFEFEF;
+         }
+         .smalltext {
+         color: #BBBBBB;
+         font-size: 11px;
+         font-family: arial;
+         }
+         table {
+         /*background:#ccc;*/
+         /*margin:20px;*/
+         /*border:#ccc 1px solid;*/
+         }
+         table th {
+         padding:4px 10px
+         }
+         table td {
+         /*background:#fff;*/
+         /*padding:2px 10px 4px 10px*/
+         }
+         table tr.even td {
+         background:#eee;
+         background-image: url('/themes/default/images/background_cell.gif');
+         border-bottom: 1px solid #999999;
+         color: #333333;
+         }
+         table tr.odd td {
+         border-bottom: 1px solid #999999;
+         color: #000000;
+         }
+         table tr:first-child th:first-child {
+         -moz-border-radius-topleft:7px;
+         -webkit-border-top-left-radius:7px;
+         border-top-left-radius:7px;
+         }
+         table tr:first-child th:last-of-type {
+         -moz-border-radius-topright:7px;
+         -webkit-border-top-right-radius:7px;
+         border-top-right-radius:7px;
+         }
+         table tr:nth-last-child(-5) td:first-of-type {
+         -moz-border-radius-bottomleft:7px;
+         -webkit-border-bottom-left-radius:7px;
+         border-bottom-left-radius:7px;
+         }
+         table tr:nth-last-child(-5) td:first-of-type {
+         -moz-border-radius-topleft:7px;
+         -webkit-border-top-left-radius:7px;
+         border-bottom-top-radius:7px;
+         }
+         /* begin the menu css*/
+         .menu_bar {
+         background-image: url('/themes/default/images/background_black.png');
+         -webkit-border-radius: 7px 7px 7px 7px;
+         -moz-border-radius: 7px 7px 7px 7px;
+         border-radius: 7px 7px 7px 7px;
+         padding: 3px;
+         }
+         .menu_bg {
+         background-image: url('/themes/default/images/menu_background.png');		background-repeat: repeat-x;
+         background-attachment: fixed;
+         /*background-color: #FFFFFF;*/
+         opacity: 0.9;
+         filter:alpha(opacity=90);
+         -moz-opacity:0.9;
+         -khtml-opacity: 0.9;
+         opacity: 0.9;
+         -webkit-border-radius: 7px 7px 7px 7px;
+         -moz-border-radius: 7px 7px 7px 7px;
+         border-radius: 7px 7px 7px 7px;
+         text-align: left;
+         padding-top: 15px;
+         padding-bottom: 25px;
+         padding-left: 5px;
+         padding-right:20px;
+         }
+         .main_content {
+         background-image: url('/themes/default/images/menu_background.png');		background-repeat: repeat-x;
+         background-attachment: fixed;
+         padding: 20px;
+         opacity: 0.9;
+         filter:alpha(opacity=90);
+         -moz-opacity:0.9;
+         -khtml-opacity: 0.9;
+         opacity: 0.9;
+         -webkit-border-radius: 7px 7px 7px 7px;
+         -moz-border-radius: 7px 7px 7px 7px;
+         border-radius: 7px 7px 7px 7px;
+         text-align: left;
+         }
+         #menu{
+         width:100%;
+         float:left;
+         }
+         #menu a, #menu h2{
+         font:bold 11px/16px arial,helvetica,sans-serif;
+         display:block;
+         /*border-color:#ccc #888 #555 #bbb;*/
+         white-space:nowrap;
+         margin:0;
+         padding:3px 3px 3px 3px;
+         }
+         #menu h2{
+         /*background:#222222 url(/css/images/expand3.gif) no-repeat 100% 100%;*/
+         /*text-transform:uppercase*/
+         width:118px;
+         }
+         #menu h2 h2{
+         /*background:#4e4b56 url(/css/images/expand3.gif) no-repeat 100% 100%;*/
+         /*text-transform:uppercase*/
+         padding:3px 3px 3px 3px;
+         }
+         #menu a{
+         text-decoration:none;
+         padding-left:7px;
+         width:114px;
+         }
+         #menu a, #menu a:visited{
+         color:#cccccc;
+         }
+         #menu .menu_sub {
+         display:none;
+         width:124px;
+         background:#333333;
+         background-color: rgba(20, 20, 20, 0.9);
+         -webkit-border-radius: 12px 12px 12px 12px;
+         -moz-border-radius: 12px 12px 12px 12px;
+         border-radius: 12px 12px 12px 12px;
+         }
+         #menu a:hover{
+         width:114px;
+         color:#fd9c03;
+         background:#1F1F1F;
+         }
+         #menu a:active{
+         color:#fd9c03;
+         }
+         #menu ul{
+         list-style:none;
+         margin:0;
+         padding:0;
+         float:left;
+         width:9em;
+         }
+         #menu li{
+         position:relative;
+         }
+         #menu ul ul{
+         position:absolute;
+         z-index:500;
+         top:auto;
+         display:none;
+         }
+         #menu ul ul ul{
+         top:0;
+         left:100%;
+         }
+         /* Enter the more specific element (div) selector
+         on non-anchor hovers for IE5.x to comply with the
+         older version of csshover.htc - V1.21.041022. It
+         improves IE's performance speed to use the older
+         file and this method */
+         div#menu h2:hover{
+         -webkit-border-radius: 12px 12px 12px 12px;
+         -moz-border-radius: 12px 12px 12px 12px;
+         border-radius: 12px 12px 12px 12px;
+         /*background:#1F1F1F url(/css/images/expand3.gif) no-repeat -999px -9999px;*/
+         }
+         div#menu li:hover{
+         cursor:pointer;
+         z-index:100;
+         }
+         div#menu li:hover ul ul,
+         div#menu li li:hover ul ul,
+         div#menu li li li:hover ul ul,
+         div#menu li li li li:hover ul ul
+         {display:none;}
+         /*
+         div#menu li:hover ul,
+         div#menu li li:hover ul,
+         div#menu li li li:hover ul,
+         div#menu li li li li:hover ul
+         {display:block;}
+         */
+         #menu a.x, #menu a.x:visited{
+         font-weight:bold;
+         color:#000;
+         /*background:#999999 url(/css/images/expand3.gif) no-repeat 100% 100%;*/
+         }
+         #menu a.x:hover{
+         color:#fff;
+         background:#000;
+         }
+         #menu a.x:active{
+         color:#060;
+         background:#ccc;
+         }
+         .menu_sub_vertical {
+         width:118px;
+         text-decoration:none;
+         border-color:#ccc;
+         border-width: 1px;
+         padding-bottom:25px;
+         list-style-image: url(/themes/default/images/arrow.png);
+         padding-left: 35px;
+         opacity: 1.0;
+         }
+         .menu_sub_vertical a {
+         text-decoration:none;
+         }
+         /* end the menu css*/
+         DIV.login_message {
+         border: 1px solid #bae0ba;
+         background-color: #eeffee;
+         -webkit-border-radius: 3px 3px 3px 3px;
+         -moz-border-radius: 3px 3px 3px 3px;
+         border-radius: 3px 3px 3px 3px;
+         padding: 20px;
+         }
+      </style>
+      <style type="text/css">
+         /* Remove margins from the 'html' and 'body' tags, and ensure the page takes up full screen height */
+         html, body {
+         height:100%;
+         margin:0;
+         padding:0;
+         }
+         /* Set the position and dimensions of the background image. */
+         #page-background {
+         position:fixed;
+         top:0;
+         left:0;
+         width:100%;
+         height:100%;
+         }
+         /* Specify the position and layering for the content that needs to
+         appear in front of the background image. Must have a higher z-index
+         value than the background image. Also add some padding to compensate
+         for removing the margin from the 'html' and 'body' tags. */
+         #page {
+         position:relative;
+         z-index:1;
+         padding:10px;
+         }
+         .vtable {
+         position:relative;
+         z-index:1;
+         padding:10px;
+         color: 000;
+         text-align: left;
+         /*
+         box-shadow:5px -5px 10px #700;
+         -webkit-box-shadow:5px -5px 10px #888;
+         -moz-box-shadow:5px -5px 10px #334455;
+         -moz-border-radius: 5px;
+         -webkit-border-radius: 5px;
+         */
+         /*border: 1px solid #555555;*/
+         /*padding: 10px;*/
+         background-color: #FFFFFF;
+         filter:alpha(opacity=90);
+         -moz-opacity:0.9;
+         -khtml-opacity: 0.9;
+         opacity: 0.9;
+         }
+         #message_container {
+         z-index: 99999;
+         position: absolute;
+         left: 0px;
+         top: -200px;
+         right: 0px;
+         filter: alpha(opacity=0);
+         opacity: 0;
+         -moz-opacity:0;
+         -khtml-opacity: 0;
+         }
+         #message_block {
+         margin: 0px auto;
+         width: 300px;
+         height: auto;
+         background-color: #000;
+         background-repeat: repeat-x;
+         background-image: url('/themes/default/images/background_black.png');
+         background-position: top center;
+         padding: 10px;
+         -webkit-border-radius: 0px 0px 7px 7px;
+         -moz-border-radius: 0px 0px 7px 7px;
+         border-radius: 0px 0px 7px 7px;
+         text-align: center;
+         }
+         #message_block .text {
+         font-family: arial, san-serif;
+         font-size: 10pt;
+         font-weight: bold;
+         color: #fff;
+         }
+      </style>
+      <script type="text/javascript">
+		function typeChange0(sel) {
+			 var type = sel.value;
+			 if(type == "DHCP"){
+				var ipa11 = document.getElementById('ipa01');
+				ipa11.style.display = "none";
+				var ipa12 = document.getElementById('ipa02');
+				ipa12.style.display = "none";
+				var ipa13 = document.getElementById('ipa03');
+				ipa13.style.display = "none";			
+			}else{
+				var ipa11 = document.getElementById('ipa01');
+				ipa11.style.display = "table-row";
+				var ipa12 = document.getElementById('ipa02');
+				ipa12.style.display = "table-row";
+				var ipa13 = document.getElementById('ipa03');
+				ipa13.style.display = "table-row";				
+			}  
+		}
+		window.onload = function myOnloadFunc(){
+			var t0 = document.getElementById('type0');
+			typeChange0(t0);
+		}
+	</script>
    </head>
    <body>
-      <?php
-      	   $config = parse_ini_file("/etc/rc.conf");
-	   $IPconfig1 = explode(" ", $config[ 'ifconfig_em1' ]);
-	   $IPconfig2 = explode(" ", $config[ 'ifconfig_em2' ]);
-	   if($config[ 'ifconfig_em1' ] == "DHCP"){
+	
+	<?php
+      	   $config = parse_ini_file("/home/vinay/rc.conf");
+	   $IPconfig0 = explode(" ", $config[ 'ifconfig_em0' ]);
+	   $gateway = $config[ 'defaultrouter' ];
+	   if($config[ 'ifconfig_em0' ] == "DHCP"){
 	  	$t1 = "DHCP";
            }else{
 	   	$t1 = "STATIC";
            }
-	   if($config[ 'ifconfig_em1' ] == "DHCP"){
-	  	$t2 = "DHCP";
-           }else{
-	   	$t2 = "STATIC";
-           }
-      ?>	
-      <div class="page">
-         <div class="content">
-            <h2>Change Configuration</h2>
-            <form method="GET" action="/net_config/UserInputIPAddrPHP.php">
-               <input type="hidden" name="form_name" id="form_form_name" value="form">
-               <table border="0" cellpadding="0" cellspacing="0">
-                  <tbody>
-                     <tr>
-                        <td style="height:0.5em;">&nbsp;</td>
-                     </tr>
-                     <tr>
-                        <td>
-                           <table border="0" cellspacing="0" cellpadding="0">
-                              <tbody>
-                                 <tr>
-                                    <td class="tf_separator"> &nbsp;&nbsp; </td>
-                                    <td id="tab-title-1" style="border-bottom-width: 0px; background-color: rgb(255, 250, 191);" class="tf_tab">
-                                       <a href="#" class="tb_label" style="color:#404040;font-weight:bold;text-decoration:none;" onclick="onShowTab(1)">NIC 1</a>
-                                    </td>
-                                    <td class="tf_separator"> &nbsp; </td>
-                                    <td id="tab-title-2" class="tf_tab" style="">
-                                       <a href="#" class="tb_label" style="color:#404040;font-weight:bold;text-decoration:none;" onclick="onShowTab(2)">NIC 2</a>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td class="tf_sheet" width="420px;" height="210px;" style="background-color:#FFFABF;">
-                           <div id="tab-sheet-1" style="display: block;" class="tf_sheet">
-                              <table class="fields" id="form_contactDetails-fields">
-                                 <tbody>
-				    <tr class="fields">
-                                       <td class="fields" align="left"><label for="form_ipaddress">Connection Type</label>&nbsp;</td>
-                                       <td align="left">
-					   <select name="Type1" onchange="typeChange1(this)" id="type1">
-            					<option value="DHCP" <?php if ($config[ 'ifconfig_em1' ] == "DHCP") echo "SELECTED"; ?> >DHCP</option>
-						<option value="STATIC" <?php if ($config[ 'ifconfig_em1' ] != "DHCP") echo "SELECTED"; ?> >STATIC IP</option>
-        	                           </select>
-				       </td>
-                                    </tr>
-                                    <tr class="fields" id="ipa11">
-                                       <td class="fields" align="left"><label for="form_ipaddress">IP Address</label>&nbsp;</td>
-                                       <td align="left"><input type="text" name="ip11" id="form_ipaddress" value="<?php echo $IPconfig1[1]; ?>" size="20"></td>
-                                    </tr>
-				    <tr class="fields" id="ipa12">
-                                       <td class="fields" align="left"><label for="form_netmask">Netmask</label>&nbsp;</td>
-                                       <td align="left"><input type="text" name="ip12" id="form_netmask" value="<?php echo $IPconfig1[3]; ?>" size="20"></td>
-                                    </tr>
-				    <tr class="fields" id="ipa13">
-                                       <td class="fields" align="left"><label for="form_netmask">Broadcast</label>&nbsp;</td>
-                                       <td align="left"><input type="text" name="ip13" id="form_netmask" value="<?php echo $IPconfig1[5]; ?>" size="20"></td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </div>
-                           <div id="tab-sheet-2" style="display: none;" class="tf_sheet">
-                              <table class="fields" id="form_contactDetails-fields">
-                                 <tbody>
-				    <tr class="fields">
-                                       <td class="fields" align="left"><label for="form_ipaddress">Connection Type</label>&nbsp;</td>
-                                       <td align="left">
-					   <select name="Type2" onchange="typeChange2(this)" id="type2">
-            					<option value="DHCP" <?php if ($config[ 'ifconfig_em2' ] == "DHCP") echo "SELECTED"; ?> >DHCP</option>
-						<option value="STATIC" <?php if ($config[ 'ifconfig_em2' ] != "DHCP") echo "SELECTED"; ?> >STATIC IP</option>
-        	                           </select>
-				       </td>
-                                    </tr>
-                                    <tr class="fields" id="ipa21">
-                                       <td class="fields" align="left"><label for="form_ipaddress">IP Address</label>&nbsp;</td>
-                                       <td align="left"><input type="text" name="ip21" id="form_ipaddress" value="<?php echo $IPconfig2[1]; ?>" size="20"></td>
-                                    </tr>
-				    <tr class="fields" id="ipa22">
-                                       <td class="fields" align="left"><label for="form_netmask">Netmask</label>&nbsp;</td>
-                                       <td align="left"><input type="text" name="ip22" id="form_netmask" value="<?php echo $IPconfig2[3]; ?>" size="20"></td>
-                                    </tr>
-				    <tr class="fields" id="ipa23">
-                                       <td class="fields" align="left"><label for="form_netmask">Broadcast</label>&nbsp;</td>
-                                       <td align="left"><input type="text" name="ip23" id="form_netmask" value="<?php echo $IPconfig2[5]; ?>" size="20"></td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </div>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td style="height:0.5em;">&nbsp;</td>
-                     </tr>
-                     <tr>
-                        <td class="buttons" align="right" style="">
-                           <input type="submit" value="Send"/>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </form>
+      ?>
+
+
+
+
+      <div id="message_container">
+         <div id="message_block">
+            <span id="message_text" class="text"></span>
          </div>
       </div>
+      <div id="page-background"><img src="/themes/default/images/backgrounds/grey.png" width="100%" height="100%" alt=""></div>
+      <div id="qr_code_container" style="display: none;" onclick="$(this).fadeOut(400);">
+         <table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+            <tbody>
+               <tr>
+                  <td align="center" valign="middle">		<span id="qr_code" onclick="$('#qr_code_container').fadeOut(400);"></span>	</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div id="page" align="center">
+         <table width="90%" class="border.disabled" border="0" cellpadding="0" cellspacing="7">
+            <tbody>
+               <tr>
+                  <td align="left" valign="top" class="headermain" colspan="2" width="100%" height="70px;">
+                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                           <tr>
+                              <td width="50%">
+                                 <a href="/"><img src="/themes/default/images/logo.png"></a>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="menu_bar" colspan="2" width="100%" height="30px">
+                     <!-- Begin CSS Horizontal Popout Menu -->
+                     <div id="menu" style="position: relative; z-index:199; width:100%;" align="left">
+                        <ul class="menu_main">
+                           <li>
+                              <a href="" style="padding: 0px 0px; border-style: none; background: none;">
+                                 <h2 align="center" style="">Network Configuration</h2>
+                              </a>
+                              <ul class="menu_sub"></ul>
+                           </li>
+                        </ul>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td class="main_content" align="left" valign="top" width="85%">
+                     <form method="GET" action="/net_config/UserInputIPAddrPHP.php">
+                        <div align="center">
+
+
+			   <table width="100%" border="0" cellpadding="0" cellspacing="2">
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <table width="100%" cellpadding="6" cellspacing="0" border="0">
+                                          <tbody>
+                                             <tr>
+                                                <th class="th" colspan="2" align="left">NIC 1</th>
+                                             </tr>
+                                             <tr>
+                                                <td class="vncell" align="left">Connection Type</td>
+                                                <td class="vtable" align="left">
+							<select name="Type0" onchange="typeChange0(this)" id="type0">
+            							<option value="DHCP" <?php if ($config[ 'ifconfig_em0' ] == "DHCP") echo "SELECTED"; ?> >DHCP</option>
+								<option value="STATIC" <?php if ($config[ 'ifconfig_em0' ] != "DHCP") echo "SELECTED"; ?> >STATIC IP</option>
+        	                           		</select>
+						</td>
+                                             </tr>
+                                             <tr id="ipa01">
+                                                <td class="vncell" align="left">IP Address</td>
+                                                <td class="vtable" align="left"><input type="text" name="ip01" id="form_netmask" value="<?php echo $IPconfig0[1]; ?>" size="20"></td>
+                                             </tr>
+					     <tr id="ipa02">
+                                                <td class="vncell" align="left">Netmask</td>
+                                                <td class="vtable" align="left"><input type="text" name="ip02" id="form_netmask" value="<?php echo $IPconfig0[3]; ?>" size="20"></td>
+                                             </tr>
+					     <tr id="ipa03">
+                                                <td class="vncell" align="left">Gateway</td>
+                                                <td class="vtable" align="left"><input type="text" name="ip03" id="form_netmask" value="<?php echo $gateway; ?>" size="20"></td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+				 <tr>
+                        		<td style="height:0.5em;">&nbsp;</td>
+                     		</tr>
+                     		<tr>
+                        		<td class="buttons" align="right" style="">
+                           			<input type="submit" value="Send"/>
+                        		</td>
+                     		</tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </form>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                     <br><br>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <span class="smalltext">
+         <a class="smalltext" target="_blank" href="http://www.fusionpbx.com">fusionpbx.com</a>. Copyright 2008 - 2012. All Rights Reserved
+         </span>
+      </div>
+      <br>
    </body>
 </html>
